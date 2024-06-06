@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ChipSecuritySystem
 {
+    /// <summary>
+    /// Backtracking is the naive approach to the problem. It recursively explores the possible solutions until the longest path is found.
+    /// Since this requires exploring every possible permutation of chips, it is not time efficient when the input is large. However, it is
+    /// simple to implement, and we can modify our input data structure in-place to track the visited chips.
+    /// </summary>
     public class Backtracking : ILongestValidSequence
     {
         public List<ColorChip> FindLongestValidSequence(List<ColorChip> chips, Color startColor, Color endColor)
@@ -44,12 +47,7 @@ namespace ChipSecuritySystem
                 }
             }
 
-            // iterate through chips array beginning with an empty list to store the current sequence and the valid starting color
-            foreach (ColorChip chip in chips.ToList())
-            {
-                Backtrack(new List<ColorChip>(), chips, startColor);
-            }
-
+            Backtrack(new List<ColorChip>(), chips, startColor);
             return longestValidSequence;
         }
     }
